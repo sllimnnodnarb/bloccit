@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-  let(:question) { Question.create!(title: "New Question Body", body: "New Question Body", resolved: false) }
+  context "attributes" do
+  let(:question) { Question.create!(title: "New Question Title", body: "New Question Body", resolved: false) }
 
-  describe "attributes" do
-    it "responds to body attribute" do
+    it "responds to title attribute" do
       expect(question).to respond_to(:title)
     end
 

@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     @posts.each_with_index do |post, index|
       if index %5 == 0
         post.title = "** SPAM **"
-        post.body = "[expletive deleted]\n Ain't nobody got time fo dat"
+        post.body = "[REDACTED]\n Ain't nobody got time fo dat"
       end
     end
   end

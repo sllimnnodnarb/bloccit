@@ -1,0 +1,13 @@
+<h1>All Questions</h1><br>
+<%= link_to "Submit a Question", new_question_path, class: 'btn btn-default' %>
+<% @questions.each do |question| %>
+  <h3><%= link_to question.title, question %></h3>
+  <div class="media">
+    <div class="media-body">
+      <p class="media-heading">
+        <%= link_to question.body, question %>
+      </p>
+      <br><br>
+    </div>
+  </div>
+<% end %>

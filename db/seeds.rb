@@ -25,8 +25,15 @@ require 'random_data'
   end
   puts "#{Post.count}"
 
-  if 
-
+  5.times do
+    Question.create!(
+      title:  RandomData.random_sentence,
+      body:   RandomData.random_paragraph,
+      resolved: false
+    )
+  end
+  
+ puts "#{Question.count} questions created"
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
