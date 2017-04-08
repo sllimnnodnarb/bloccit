@@ -1,13 +1,11 @@
 class AdvertisementsController < ApplicationController
-  def index
-    @advertisements = Advertisement.all
-  end
 
   def show
     @advertisement = Advertisement.find(params[:id])
   end
 
   def new
+    @topic = Topic.find(params[:topic_id])
     @advertisement = Advertisement.new
   end
 
@@ -16,10 +14,12 @@ class AdvertisementsController < ApplicationController
     @advertisement.title = params[:advertisement][:title]
     @advertisement.body = params[:advertisement][:body]
     @advertisement.price = params[:advertisement][:price]
+    @topic = Topic.find(params[:topic_id])
+    @advertisement.topic = @topic
 
     if @advertisement.save
       flash[:notice] = "Advertisement was saved."
-      redirect_to @advertisement
+      redirect_to [@advertisement.topic, @advertisement]
     else
       flash.now[:alert] = "There was an error saving the Advertisement. Please try again."
       render :new
@@ -38,7 +38,7 @@ class AdvertisementsController < ApplicationController
 
     if @advertisement.save
       flash[:notice] = "Advertisement was updated."
-      redirect_to @advertisement
+      redirect_to [@advertisement.topic, @advertisement]
      else
       flash.now[:alert] = "There was an error saving the advertisement. Please try again."
       render :edit
@@ -50,7 +50,7 @@ class AdvertisementsController < ApplicationController
 
     if @advertisement.destroy
       flash[:notice] = "\"#{@advertisement.title}\" was deleted successfully."
-      redirect_to advertisements_path
+      redirect_to @advertisement.topic
     else
       flash.now[:alert] = "There was an error deleting the advertisement."
       render :show

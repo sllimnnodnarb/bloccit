@@ -13,4 +13,7 @@ class WelcomeController < ApplicationController
 
   def questions
   end
+
+  def advertisements
+  end
 end

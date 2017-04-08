@@ -25,6 +25,7 @@ class PostsController < ApplicationController
     end
   end
 
+
   def edit
     @post = Post.find(params[:id])
   end
@@ -54,4 +55,5 @@ class PostsController < ApplicationController
       render :show
     end
   end
+
 end

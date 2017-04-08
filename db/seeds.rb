@@ -3,11 +3,21 @@ require 'random_data'
 
   5.times do
     Topic.create!(
-      name:         RandomData.random_sentence,
+      name:  RandomData.random_sentence,
       description:  RandomData.random_paragraph
     )
   end
   topics = Topic.all
+
+  5.times do
+    Advertisement.create!(
+      title: RandomData.random_sentence,
+      body:  RandomData.random_paragraph,
+      price:  100
+    )
+  end
+  advertisements = Advertisement.all
+
 
   5.times do
     Post.create!(
@@ -43,7 +53,7 @@ require 'random_data'
     )
   end
 
-
+puts "#{Advertisement.count} advertisements created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"

@@ -1,3 +1,3 @@
 class Advertisement < ActiveRecord::Base
-  has_many :advertisements, dependent: :destroy
+  belongs_to :topic
 end

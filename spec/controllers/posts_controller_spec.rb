@@ -1,23 +1,9 @@
 require 'rails_helper'
-
+include RandomData
 RSpec.describe PostsController, type: :controller do
 
   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
   let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
-
-  describe "GET #new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
 
   describe "GET show" do
     it "returns http success" do
@@ -60,6 +46,7 @@ RSpec.describe PostsController, type: :controller do
 
     it "assigns the new post to @post" do
       post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+      expect(assigns(:post)).to eq Post.last
     end
 
     it "redirects to the new post" do
@@ -114,7 +101,7 @@ RSpec.describe PostsController, type: :controller do
         expect(count).to eq 0
       end
 
-      it "redirects to posts index" do
+      it "redirects to topic show" do
         delete :destroy, topic_id: my_topic.id, id: my_post.id
         expect(response).to redirect_to my_topic
       end
