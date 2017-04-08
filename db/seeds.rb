@@ -1,7 +1,17 @@
 require 'random_data'
 
+
+  5.times do
+    Topic.create!(
+      name:         RandomData.random_sentence,
+      description:  RandomData.random_paragraph
+    )
+  end
+  topics = Topic.all
+
   5.times do
     Post.create!(
+      topic: topics.sample,
       title:  RandomData.random_sentence,
       body:   RandomData.random_paragraph
     )
@@ -9,7 +19,7 @@ require 'random_data'
 
   posts = Post.all
 
-  10.times do
+  5.times do
     Comment.create!(
       post: posts.sample,
       body: RandomData.random_paragraph
@@ -17,7 +27,7 @@ require 'random_data'
   end
 
   puts "#{Post.count}"
-  1.times do
+  3.times do
     Post.find_or_create_by(
       title: "It is well",
       body: "With my soul"
@@ -32,8 +42,11 @@ require 'random_data'
       resolved: false
     )
   end
-  
- puts "#{Question.count} questions created"
- puts "Seed finished"
- puts "#{Post.count} posts created"
- puts "#{Comment.count} comments created"
+
+
+puts "#{Topic.count} topics created"
+puts "#{Post.count} posts created"
+puts "#{Comment.count} comments created"
+puts "#{Question.count} questions created"
+puts "Seed finished"
+puts "Some seeds fell beside the road, and the birds came and ate them up..."

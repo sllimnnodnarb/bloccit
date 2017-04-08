@@ -11,6 +11,7 @@ source 'https://rubygems.org'
    gem 'rspec-rails', '~> 3.0'
    gem 'sqlite3'
    gem 'pry-rails'
+   gem 'shoulda'
  end
 
  gem 'bootstrap-sass'
