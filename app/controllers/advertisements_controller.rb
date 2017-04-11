@@ -1,21 +1,17 @@
 class AdvertisementsController < ApplicationController
 
+  before_action :set_topic
+
   def show
     @advertisement = Advertisement.find(params[:id])
   end
 
   def new
-    @topic = Topic.find(params[:topic_id])
     @advertisement = Advertisement.new
   end
 
   def create
-    @advertisement = Advertisement.new
-    @advertisement.title = params[:advertisement][:title]
-    @advertisement.body = params[:advertisement][:body]
-    @advertisement.price = params[:advertisement][:price]
-    @topic = Topic.find(params[:topic_id])
-    @advertisement.topic = @topic
+    @advertisement = @topic.advertisements.new(advertisement_params)
 
     if @advertisement.save
       flash[:notice] = "Advertisement was saved."
@@ -32,11 +28,8 @@ class AdvertisementsController < ApplicationController
 
   def update
     @advertisement = Advertisement.find(params[:id])
-    @advertisement.title = params[:advertisement][:title]
-    @advertisement.body = params[:advertisement][:body]
-    @advertisement.price = params[:advertisement][:price]
 
-    if @advertisement.save
+    if @advertisement.update_attributes(advertisement_params)
       flash[:notice] = "Advertisement was updated."
       redirect_to [@advertisement.topic, @advertisement]
      else
@@ -57,4 +50,13 @@ class AdvertisementsController < ApplicationController
     end
   end
 
+  private
+
+  def set_topic
+    @topic = Topic.find(params[:topic_id])
+  end
+
+  def advertisement_params
+    params.require(:advertisement).permit(:title, :body, :price)
+  end
 end
