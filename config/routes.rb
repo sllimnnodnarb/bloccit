@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post 'users/confirm' => 'users#confirm'
   get 'about' => 'welcome#about'
   root 'welcome#index'
+  get 'faq' => 'welcome#faq'
 end
