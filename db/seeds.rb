@@ -61,10 +61,16 @@ require 'random_data'
     )
   end
 
+admin = User.create!(
+  name:     'Admin User',
+  email:    'admin@example.com',
+  password: 'helloworld',
+  role:     'admin'
+)
 
-user = User.first
-user.update_attributes!(
-  email: 'sllimnodnarb@gmail.com',
+member = User.create!(
+  name:     'Member User',
+  email:    'member@example.com',
   password: 'helloworld'
 )
 
