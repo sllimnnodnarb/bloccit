@@ -6,6 +6,14 @@
 
  .nav {
    margin-top: 5px;
+   text-align: right;
+ }
+
+ .gvtr {
+   margin-left: 10px;
+   margin-bottom: 10px;
+   margin-top: -4px;
+   box-shadow: 7px 7px 5px grey;
  }
 
  btn .social-btn {
@@ -20,7 +28,6 @@
      border-radius: 10px;
      padding: 10px;
      margin: 10px;
-
  }
 
  btn .social-btn:hover {
