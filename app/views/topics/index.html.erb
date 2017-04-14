@@ -3,19 +3,10 @@
 <% if user_is_authorized_for_topics? %>
   <%= link_to "Create a New Topic", new_topic_path, class: 'btn btn-default' %>
 <% end %>
- <br><br>
- <div class="row">
-   <div class="col-md-8">
-     <% @topics.each do |topic| %>
-       <div class="media">
-         <div class="media-body">
-           <h3 class="media-heading">
-             <%= link_to topic.name, topic %>
-           </h3>
-           <p>
-             <%= topic.description %>
-           </p>
-         </div>
-       </div>
-     <% end %>
- </div>
+<br><br>
+<div class="row">
+  <div class="col-md-8">
+    <% @topics.each do |topic| %>
+      <%= render partial: 'topic', locals: { topic: topic } %>
+    <% end %>
+</div>
