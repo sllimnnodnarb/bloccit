@@ -28,12 +28,14 @@ require 'random_data'
 
 
   5.times do
-    Post.create!(
+    post = Post.create!(
       user:   users.sample,
       topic: topics.sample,
       title:  RandomData.random_sentence,
       body:   RandomData.random_paragraph
     )
+    post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+    rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
   end
   posts = Post.all
 
@@ -45,14 +47,12 @@ require 'random_data'
     )
   end
 
-  puts "#{Post.count}"
   3.times do
     Post.find_or_create_by(
       title: "It is well",
       body: "With my soul"
     )
   end
-  puts "#{Post.count}"
 
   5.times do
     Question.create!(
@@ -87,6 +87,7 @@ puts "#{Advertisement.count} advertisements created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Vote.count} votes created"
 puts "#{Question.count} questions created"
 puts "Seed finished"
 puts "Some seeds fell beside the road, and the birds came and ate them up..."
