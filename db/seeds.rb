@@ -39,6 +39,7 @@ require 'random_data'
 
   5.times do
     Comment.create!(
+      user: users.sample,
       post: posts.sample,
       body: RandomData.random_paragraph
     )
@@ -66,6 +67,13 @@ admin = User.create!(
   email:    'admin@example.com',
   password: 'helloworld',
   role:     'admin'
+)
+
+moderator = User.create!(
+  name:     'Moderator User',
+  email:    'moderator@example.com',
+  password: 'helloworld',
+  role:     'moderator'
 )
 
 member = User.create!(
