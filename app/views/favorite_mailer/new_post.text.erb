@@ -1,2 +1,4 @@
-You are now following "<%= @post.title %>", you will be notified of all comments.  There is no way to EVER reverse that action which you have now done.  MUAH HA HA HA!!!  Not really, just kidding.  You can simply unfavorite your <%= link_to "post", topic_post_url(@post.topic, @post) %> and you are good to go... for now.
+You are now following "<%= @post.title %>" you will be notified of all comments.  There is no way to EVER reverse that action which you have now done.  MUAH HA HA HA!!!  Not really, just kidding.  You can simply unfavorite your
+<%= link_to "post", topic_post_url(@post.topic, @post) %>
+ and you are good to go... for now.
 <%= "=" * (@post.title.length + 12) %>
