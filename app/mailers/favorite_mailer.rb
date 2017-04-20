@@ -2,9 +2,9 @@ class FavoriteMailer < ApplicationMailer
   default from: "sllimnodnarb@gmail.com"
 
   def new_comment(user, post, comment)
-    headers["Message-ID"] = "<comments/#{comment.id}@your-app-name.example>"
-    headers["In-Reply-To"] = "<post/#{post.id}@your-app-name.example>"
-    headers["References"] = "<post/#{post.id}@your-app-name.example>"
+    headers["Message-ID"] = "<comments/#{comment.id}@cherry-tart-76272.herokuapp.com>"
+    headers["In-Reply-To"] = "<post/#{post.id}@cherry-tart-76272.herokuapp.com>"
+    headers["References"] = "<post/#{post.id}@cherry-tart-76272.herokuapp.com>"
     @user = user
     @post = post
     @comment = comment
@@ -12,10 +12,9 @@ class FavoriteMailer < ApplicationMailer
   end
 
   def new_post(post)
-    headers["Message-ID"] = "<posts/#{post.id}@your-app-name.example>"
-    headers["In-Reply-To"] = "<post/#{post.id}@your-app-name.example>"
-    headers["References"] = "<post/#{post.id}@your-app-name.example>"
-
+    headers["Message-ID"] = "<posts/#{post.id}@cherry-tart-76272.herokuapp.com>"
+    headers["In-Reply-To"] = "<post/#{post.id}@cherry-tart-76272.herokuapp.com>"
+    headers["References"] = "<post/#{post.id}@cherry-tart-76272.herokuapp.com>"
     @post = post
     mail(to: post.user.email, subject: "You are following, #{post.title}")
   end

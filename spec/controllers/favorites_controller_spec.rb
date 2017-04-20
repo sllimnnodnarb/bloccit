@@ -2,11 +2,9 @@ require 'rails_helper'
 include SessionsHelper
 
 RSpec.describe FavoritesController, type: :controller do
-
-  let(:my_topic) { create(:topic) }
-  let(:my_user) { create(:user) }
-  let(:my_post) { create(:post, topic: my_topic, user: my_user) }
-
+  let(:my_user) { create(:user)}
+  let(:my_topic) { create(:topic)}
+  let(:my_post) { create(:post, topic: my_topic, user: my_user)}
 
   context 'guest user' do
     describe 'POST create' do
@@ -38,7 +36,9 @@ RSpec.describe FavoritesController, type: :controller do
 
       it 'creates a favorite for the current user and specified post' do
         expect(my_user.favorites.find_by_post_id(my_post.id)).to be_nil
+
         post :create, { post_id: my_post.id }
+
         expect(my_user.favorites.find_by_post_id(my_post.id)).not_to be_nil
       end
     end
@@ -58,5 +58,4 @@ RSpec.describe FavoritesController, type: :controller do
       end
     end
   end
-
 end

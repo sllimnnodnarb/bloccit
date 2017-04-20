@@ -57,12 +57,12 @@ RSpec.describe QuestionsController, type: :controller do
 
     it "assigns the new question to @question" do
       post :create, {question: my_question.attributes}
-      expect(assigns(:question)).to eq Question.last
+      expect(assigns(:question)).to eq Question.first
     end
 
     it "redirects to the new question" do
       post :create, {question: my_question.attributes}
-      expect(response).to redirect_to Question.last
+      expect(response).to redirect_to Question.first
     end
   end
 

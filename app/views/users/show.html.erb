@@ -12,13 +12,24 @@
         <h2 class="media-heading"><%= @user.name %></h2>
         <small>
           <%= pluralize(@user.posts.count, 'post') %>,
-          <%= pluralize(@user.comments.count, 'comment') %>
+          <%= pluralize(@user.comments.count, 'comment') %>,
+          <%= pluralize(@user.favorites.count, 'favorite') %>
         </small>
       </div>
     </div>
   </div>
 </div>
-<h2>Posts</h2>
-<%= render @user.posts %>
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% if no_user_posts? %>
+  <h4> Sadly, <%= @user.name %> has yet to create a single post. </h4>
+<% else %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
+<% end %>
+<% if no_user_comments? %>
+  <h4> Oh no, <%= @user.name %> has not created even one comment! </h4>
+<% else %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>
+<% end %>
+<h2>Favorites</h2>
+<%= render @user.favorites.map(&:post) %>
